@@ -10,3 +10,6 @@ lemma something_trivial : 2 + 2 = 4 := rfl
 def add_one (n : Nat) : Nat := n + 1
 
 #check Real.log_abs
+
+
+lemma TEST_FAIL_something_trivial : 2 + 2 = 5 := rfl
