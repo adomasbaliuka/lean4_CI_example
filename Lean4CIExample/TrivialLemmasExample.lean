@@ -7,7 +7,7 @@ import Mathlib
 
 lemma something_trivial : 2 + 2 = 4 := rfl
 
-def add_one (n : Nat) : Nat := n + 1
+def add_one (n : Nat) : Nat := n + 2
 
 #check Real.log_abs
 
