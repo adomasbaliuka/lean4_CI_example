@@ -8,6 +8,7 @@ import Lean4CIExample.ExampleSubdir.ExampleInsideSubdir
 
 lemma something_trivial : 2 + 2 = 4 := rfl
 
+/-- Adds one to a number.  -/
 def add_one (n : Nat) : Nat := n + 1
 
 #check Real.log_abs
