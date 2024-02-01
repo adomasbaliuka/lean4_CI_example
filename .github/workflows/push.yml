@@ -40,16 +40,16 @@ jobs:
       - name: Install elan
         run: curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:4.0.0
 
+      # Lean4CIExample.lean should import all the files.
+      - name: update Lean4CIExample.lean
+        run: |
+          find MIL -name "*.lean" | LC_ALL=C sort | sed 's/\.lean//;s,/,.,g;s/^/import /' > MIL.lean
+
       - name: Get cache
         run: ~/.elan/bin/lake -Kenv=dev exe cache get
 
       - name: Build project
         run: ~/.elan/bin/lake -Kenv=dev build Lean4CIExample
 
-      - uses: actions/cache@v3
-        name: Mathlib doc Cache
-        with:
-          path: build/doc/Mathlib
-          key: DocGen4-${{ hashFiles('lake-manifest.json') }}
-          restore-keys: |
-            DocGen4-
+      - name: check that all files are imported
+        run: git diff --exit-code
